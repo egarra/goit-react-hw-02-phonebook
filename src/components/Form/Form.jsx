@@ -1,14 +1,17 @@
 import { Component } from 'react';
+import { InputForm, Btn, InputField } from './Form.styled';
 
 export class Form extends Component {
   state = {
     nameValue: '',
-    phoneValue: ''
+    phoneValue: '',
   };
 
   inputChange = event => {
     this.setState(
-        event.target.name === "name" ? { nameValue: event.target.value } : { phoneValue: event.target.value }
+      event.target.name === 'name'
+        ? { nameValue: event.target.value }
+        : { phoneValue: event.target.value }
     );
   };
 
@@ -20,9 +23,10 @@ export class Form extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <InputForm onSubmit={this.handleSubmit}>
         <p>Name</p>
-        <input
+        <InputField
+          placeholder="name"
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -31,7 +35,8 @@ export class Form extends Component {
           onChange={this.inputChange}
         />
         <p>Number</p>
-        <input
+        <InputField
+          placeholder="number"
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -39,8 +44,8 @@ export class Form extends Component {
           required
           onChange={this.inputChange}
         />
-        <button type="submit">Add contact</button>
-      </form>
+        <Btn type="submit">Add contact</Btn>
+      </InputForm>
     );
   }
 }
