@@ -3,21 +3,19 @@ import { InputForm, Btn, InputField } from './Form.styled';
 
 export class Form extends Component {
   state = {
-    nameValue: '',
-    phoneValue: '',
+    name: '',
+    number: '',
   };
 
   inputChange = event => {
     this.setState(
-      event.target.name === 'name'
-        ? { nameValue: event.target.value }
-        : { phoneValue: event.target.value }
+      {[event.target.name]: event.target.value}
     );
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.onFormSubmit(this.state.nameValue, this.state.phoneValue);
+    this.props.onFormSubmit(this.state.name, this.state.number);
     event.target.reset();
   };
 
